@@ -21,12 +21,12 @@ function GameGrid() {
     apiClient
       .get<FetchGamesResponse>("/games")
       .then((res) => setGames(res.data.results))
-      .catch((err) => setError(err));
-  }, []);
+      .catch((err) => setError(err.message));
+  });
 
   return (
     <>
-      {error && <Text>error</Text>}
+      {error && <Text>{error}</Text>}
       <ul>
         {games.map((game) => (
           <li key={game.id}>{game.name}</li>
