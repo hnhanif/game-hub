@@ -5,13 +5,20 @@ import {
   MenuItem,
   Button,
   Box,
+  Spinner,
 } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 import usePlatforms from "../hooks/usePlatforms.ts";
 
 function PlatformSelector() {
-  const { data, error } = usePlatforms();
+  const { data, error, isLoading } = usePlatforms();
   if (error) return null;
+  else if (isLoading)
+    return (
+      <Box paddingBottom={"10px"} marginX={"30px"}>
+        <Spinner size={"md"} />
+      </Box>
+    );
   return (
     <Box marginBottom={3}>
       <Menu>
