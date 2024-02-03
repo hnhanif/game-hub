@@ -8,7 +8,6 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import getCroppedImageUrl from "../services/image-url.ts";
-import GenreSkeleton from "./GenreSkeleton.tsx";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
@@ -16,11 +15,10 @@ interface Props {
 }
 
 function GenreList({ onSelectGenre, selectedGenre }: Props) {
-  const { data, isLoading, error } = useGenres();
-  if (error) return null;
+  const { data } = useGenres();
+
   return (
     <>
-      {isLoading && <GenreSkeleton />}
       <Heading fontSize={"2xl"} marginBottom={3}>
         Genres
       </Heading>
